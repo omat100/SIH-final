@@ -14,7 +14,7 @@ the post format can be seen in type.md
 ### Iske baad socket ka ek baar dekh lo
 This can be been in bridge folder
 As i didnt have any hardware i unfortunately could not check if hardware data goes to supabase therefore i have
-drawn the flowchart of thats the main plan of how data shall move there
+drawn the flowchart of the main plan of how data shall move there
 
 ### routes package
 the routes package has all the routes which are later added onto app.py
