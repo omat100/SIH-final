@@ -1,28 +1,15 @@
 import serial
-import torch
 from datetime import datetime, timezone
 
 from ..data_source import set_source
-from ..routes import LABELS, TABLE
+from ..routes import TABLE
 from ...db.client import get_client
-from ...models.model import load_model
 
 esp32 = serial.Serial("COM7", 115200)
-model = load_model()
 
 # The ESP32 has no distance sensor yet — this stands in for that missing
-# reading (both as model input and as the DB value) until real hardware exists.
+# reading until real hardware exists.
 PLACEHOLDER_DISTANCE_MM = 0.0
-
-
-def predict_risk(temperature, humidity, tilt, distance=PLACEHOLDER_DISTANCE_MM):
-    inputs = torch.tensor(
-        [[temperature, humidity, distance, tilt]], dtype=torch.float32
-    )
-    with torch.no_grad():
-        output = model(inputs)
-    predicted_class = torch.argmax(output, dim=1).item()
-    return LABELS[predicted_class]
 
 
 def read_serial(socketio):
@@ -41,12 +28,6 @@ def read_serial(socketio):
 
         socketio.emit("sensor_data", sensor_data)
 
-        risk_level = None
-        try:
-            risk_level = predict_risk(temperature, humidity, tilt)
-        except Exception as err:
-            print(f"Prediction failed: {err}")
-
         try:
             row = {
                 "time": datetime.now(timezone.utc).isoformat(),
@@ -55,8 +36,6 @@ def read_serial(socketio):
                 "distance_mm": PLACEHOLDER_DISTANCE_MM,
                 "tilt_deg": tilt,
             }
-            if risk_level is not None:
-                row["risk_level"] = risk_level
             client.table(TABLE).insert(row).execute()
         except Exception as err:
             print(f"Failed to log sensor reading to Supabase: {err}")
