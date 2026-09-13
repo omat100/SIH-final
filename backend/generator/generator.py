@@ -1,7 +1,10 @@
 import random
 import time
 
+from ..src.data_source import set_source
+
 def generate_sensor_data(socketio):
+    set_source("generator")
     while True:
         data = {
             "temperature": round(random.uniform(25, 35), 2),

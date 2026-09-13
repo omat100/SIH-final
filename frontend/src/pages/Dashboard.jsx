@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import StatCard from '../components/StatCard'
 import LogsTable from '../components/LogsTable'
+import TrendChart from '../components/TrendChart'
 import { useLiveReading } from '../hooks/useLiveReading'
 import { fetchLogs } from '../lib/api'
 
@@ -32,6 +33,14 @@ export default function Dashboard() {
     }
   }, [])
 
+  const chronological = useMemo(
+    () => [...logs].sort((a, b) => new Date(a.time) - new Date(b.time)),
+    [logs]
+  )
+
+  const trendFor = (field) =>
+    chronological.map((row) => ({ time: row.time, value: row[field] }))
+
   return (
     <div className="page">
       <section className="panel">
@@ -46,6 +55,18 @@ export default function Dashboard() {
           <StatCard label="Humidity" value={reading?.humidity} unit="%" />
           <StatCard label="Distance" value={reading?.distance} unit="mm" />
           <StatCard label="Tilt" value={reading?.tilt} unit="°" />
+        </div>
+      </section>
+
+      <section className="panel">
+        <div className="panel-header">
+          <h2>Trends</h2>
+        </div>
+        <div className="trend-grid">
+          <TrendChart title="Temperature" data={trendFor('temperature_c')} color="var(--chart-series-1)" unit="°C" />
+          <TrendChart title="Humidity" data={trendFor('humidity_pct')} color="var(--chart-series-2)" unit="%" />
+          <TrendChart title="Distance" data={trendFor('distance_mm')} color="var(--chart-series-3)" unit="mm" />
+          <TrendChart title="Tilt" data={trendFor('tilt_deg')} color="var(--text-h)" unit="°" />
         </div>
       </section>
 

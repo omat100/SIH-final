@@ -1,8 +1,11 @@
 import serial
 
+from ..data_source import set_source
+
 esp32 = serial.Serial("COM7", 115200)
 
 def read_serial(socketio):
+    set_source("esp32")
     while True:
         data = esp32.readline().decode().strip()
 
