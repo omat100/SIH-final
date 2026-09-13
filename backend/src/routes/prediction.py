@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 import torch
-from models.model import load_model
+from ...models.model import load_model
 from . import LABELS, VALID_LABELS
 
 prediction_bp = Blueprint("prediction_bp", __name__, url_prefix="/api/predict")

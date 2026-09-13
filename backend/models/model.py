@@ -16,6 +16,6 @@ class Net(nn.Module):
 
 def load_model():
     model = Net()  # recreate the same architecture first
-    model.load_state_dict(torch.load("models/sim_model.pt"))
+    model.load_state_dict(torch.load("backend/models/sim_model.pt"))
     model.eval()
     return model
