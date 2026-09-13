@@ -2,4 +2,4 @@
 
 LABELS = ("SAFE", "WARNING", "DANGER")
 VALID_LABELS = frozenset(LABELS)
-TABLE = "Sensor_record"
+TABLE = "Sensor"

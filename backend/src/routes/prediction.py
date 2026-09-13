@@ -36,8 +36,14 @@ def predict():
     if label not in VALID_LABELS:
         return jsonify({"error": "Invalid prediction"}), 500
 
+    breakdown = {
+        LABELS[i]: round(probabilities[0][i].item() * 100, 2)
+        for i in range(len(LABELS))
+    }
+
     return jsonify({
         "class": predicted_class,
         "label": label,
-        "confidence": round(confidence*100,2)
+        "confidence": round(confidence*100,2),
+        "probabilities": breakdown
     })
