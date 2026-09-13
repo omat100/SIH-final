@@ -1,10 +1,15 @@
-### KOI BHI KOI MAJOR CHANGE NAAHI KAREGA
+### SIH-final
+This has been made for SIH
+all code except socket has been tested
+
+### KOI BHI KOI MAJOR CHANGES NAAHI KAREGA
 models and be trained and stored in models folder in backed and just change the path in __init__.py
 rest everything is set. 
 
 ### data moves as shown in workflow folder
 These are well maintained flowcharts which you can use
 if anything is left out let me know
+the post format can be seen in type.md
 
 ### Iske baad socket ka ek baar dekh lo
 This can be been in bridge folder
