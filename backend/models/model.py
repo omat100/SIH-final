@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-
+from . import PATH
 class Net(nn.Module):
     def __init__(self):
         super().__init__()
@@ -16,6 +16,6 @@ class Net(nn.Module):
 
 def load_model():
     model = Net()  # recreate the same architecture first
-    model.load_state_dict(torch.load("backend/models/sim_model.pt"))
+    model.load_state_dict(torch.load(PATH))
     model.eval()
     return model
