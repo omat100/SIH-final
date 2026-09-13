@@ -1,10 +1,10 @@
 from flask import Blueprint, jsonify
 
 from ...db.client import get_client
-
+from . import TABLE
 dashboard_bp = Blueprint("dashboard_bp", __name__, url_prefix="/api/dashboard")
 
-TABLE = "Sensor_record"
+
 
 
 @dashboard_bp.route("/records", methods=["GET"])
