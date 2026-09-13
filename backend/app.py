@@ -1,7 +1,7 @@
 from flask import Flask
 from .src.routes.test import test_bp
 from .src.routes.prediction import prediction_bp
-
+### need to add serial bridge connection here
 app = Flask(__name__)
 
 app.register_blueprint(test_bp)
