@@ -14,7 +14,8 @@ class Net(nn.Module):
         x = self.relu(self.fc2(x))
         return self.fc3(x)
 
-model = Net()
-model = Net()  # recreate the same architecture first
-model.load_state_dict(torch.load("sim_model.pt"))
-model.eval()
+def load_model():
+    model = Net()  # recreate the same architecture first
+    model.load_state_dict(torch.load("models/sim_model.pt"))
+    model.eval()
+    return model
