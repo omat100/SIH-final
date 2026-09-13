@@ -4,6 +4,12 @@ export async function fetchLogs() {
   return res.json()
 }
 
+export async function fetchSource() {
+  const res = await fetch('/api/source/')
+  if (!res.ok) throw new Error(`Failed to fetch source: ${res.status}`)
+  return res.json()
+}
+
 export async function predict({ temperature_c, humidity_pct, distance_mm_day, tilt_deg }) {
   const res = await fetch('/api/predict/v1', {
     method: 'POST',

@@ -4,9 +4,9 @@
   --bg: #fff;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
+  --accent: #1c5cab;
+  --accent-bg: rgba(42, 120, 214, 0.08);
+  --accent-border: rgba(42, 120, 214, 0.35);
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
@@ -16,6 +16,13 @@
   --chart-series-3: #1baf7a;
   --chart-grid: #e1e0d9;
   --chart-axis: #c3c2b7;
+
+  --status-good: #0ca30c;
+  --status-warning: #b8790f;
+  --status-critical: #d03b3b;
+  --status-good-bg: rgba(12, 163, 12, 0.1);
+  --status-warning-bg: rgba(250, 178, 25, 0.16);
+  --status-critical-bg: rgba(208, 59, 59, 0.1);
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -50,11 +57,22 @@
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
 
+    --accent: #3987e5;
+    --accent-bg: rgba(57, 135, 229, 0.15);
+    --accent-border: rgba(57, 135, 229, 0.4);
+
     --chart-series-1: #3987e5;
     --chart-series-2: #d95926;
     --chart-series-3: #199e70;
     --chart-grid: #2c2c2a;
     --chart-axis: #383835;
+
+    --status-good: #0ca30c;
+    --status-warning: #fab219;
+    --status-critical: #e66767;
+    --status-good-bg: rgba(12, 163, 12, 0.15);
+    --status-warning-bg: rgba(250, 178, 25, 0.15);
+    --status-critical-bg: rgba(230, 103, 103, 0.15);
   }
 
   #social .button-icon {
@@ -64,14 +82,10 @@
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;

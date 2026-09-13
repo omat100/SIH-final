@@ -1,11 +1,15 @@
 import serial
+from datetime import datetime, timezone
 
 from ..data_source import set_source
+from ..routes import TABLE
+from ...db.client import get_client
 
 esp32 = serial.Serial("COM7", 115200)
 
 def read_serial(socketio):
     set_source("esp32")
+    client = get_client()
     while True:
         data = esp32.readline().decode().strip()
 
@@ -18,6 +22,16 @@ def read_serial(socketio):
         }
 
         socketio.emit("sensor_data", sensor_data)
+
+        try:
+            client.table(TABLE).insert({
+                "time": datetime.now(timezone.utc).isoformat(),
+                "temperature_c": temperature,
+                "humidity_pct": humidity,
+                "tilt_deg": tilt,
+            }).execute()
+        except Exception as err:
+            print(f"Failed to log sensor reading to Supabase: {err}")
 
 # import serial
 # from flask import Flask
