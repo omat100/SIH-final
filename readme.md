@@ -3,7 +3,7 @@ This has been made for SIH
 all code except socket has been tested
 
 ### KOI BHI KOI MAJOR CHANGES NAAHI KAREGA
-models and be trained and stored in models folder in backed and just change the path in __init__.py
+models are trained and stored in models folder in backed and just change the path in __init__.py
 rest everything is set. 
 
 ### data moves as shown in workflow folder
